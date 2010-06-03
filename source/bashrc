@@ -109,8 +109,8 @@ function ssh_style {
 }
 
 warn=`[ \`whoami\` = root ] && echo -n $BGHI || echo -n ''`
-prompt="\`bold ; blue\`: \`ssh_style | xargs printf '%-76s' | $sub\` $FADE;
-\`bold ; blue\`:$FADE;  $REST\`sgr0\`"
+prompt="\[\`bold ; blue\`\]: \`ssh_style | xargs printf '%-76s' | $sub\` $FADE;
+\[\`bold ; blue\`\]:$FADE;  $REST\[\`sgr0\`\]"
 
 prepend=''
 if [ "${TERM}" = "xterm" ]
