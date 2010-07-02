@@ -99,9 +99,6 @@ function root_warn {
 }
 
 sub="$rsed 's|/|$FADE&$NORM|g ; s/@/$FADE&$DARK/ ; s/:/$FADE&$DARK/'"
-function color {
-  $rsed 's|[@/:]|$FADE&$NORM|g'
-}
 
 function ssh_style {
   (user; echo -n '@'; host; echo -n ':'; dir ) | xargs | sed -r 's/ //g'
