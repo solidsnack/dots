@@ -98,7 +98,6 @@ function root_warn {
   [ $1 = 'root' ] && red
 }
 
-# The function below does not work.
 sub="$rsed 's|/|$FADE&$NORM|g ; s/@/$FADE&$DARK/ ; s/:/$FADE&$DARK/'"
 function color {
   $rsed 's|[@/:]|$FADE&$NORM|g'
