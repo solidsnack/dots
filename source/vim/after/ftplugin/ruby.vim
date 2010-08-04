@@ -29,4 +29,4 @@ let RUBY =
 \ , "spaces2" : function("ruby:spaces2")
 \ }
 
-call g:RUBY['tab3col']()
+
