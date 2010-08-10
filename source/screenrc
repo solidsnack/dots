@@ -2,7 +2,7 @@ nethack on
 vbell on
 defutf8 on
 
-defscrollback 4096
+defscrollback 16384
 backtick 1 1 1 date -u +%Y-%m-%dT%TZ
 
 logtstamp on
