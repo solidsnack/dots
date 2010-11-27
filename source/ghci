@@ -1,7 +1,4 @@
-:set -XOverlappingInstances
-:set -XNoMonomorphismRestriction
-:set -XUnicodeSyntax
-:set -XArrows
+:set -XOverloadedStrings
 :set -Wall
 :set -fno-warn-name-shadowing
 :set -fwarn-unused-imports
