@@ -12,13 +12,9 @@ logfile "screenlog.%t.%1`"
 
 bindkey -t "^asudo" screen sudo -s
 bindkey -t "^airb" screen irb
-bindkey -t "^asup" screen sup
-bindkey -t "^airssi" screen irssi
-bindkey -t "^ask" screen skype
 bindkey -t "^avim" screen vim
 bindkey -t "^aemacs" screen emacs
 bindkey -t "^aghci" screen ghci
-bindkey -t "^apy" screen python
 
 caption always "%{+b kG} %=%{-s} %{.K}%-w%{.B}%n %{.G}%t%{.K}%+w%{.G} %{+s} %="
 #               |C     | |L    | |I                            ||R           |
