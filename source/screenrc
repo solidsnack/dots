@@ -13,7 +13,7 @@ logfile "screenlog.%t.%1`"
 bindkey -t "^asudo" screen sudo -s
 bindkey -t "^airb" screen irb
 bindkey -t "^avim" screen vim
-bindkey -t "^aemacs" screen emacs
+bindkey -t "^aemacs" screen emacs -nw
 bindkey -t "^aghci" screen ghci
 
 caption always "%{+b kG} %=%{-s} %{.K}%-w%{.B}%n %{.G}%t%{.K}%+w%{.G} %{+s} %="
