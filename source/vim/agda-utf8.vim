@@ -44,6 +44,8 @@ imap <buffer> <==> ⇔
 " Symbols from mathematics and logic, LaTeX style
 imap <buffer> \forall ∀
 imap <buffer> \exists ∃
+imap <buffer> \and ∧
+imap <buffer> \or ∨
 imap <buffer> \in ∈
 imap <buffer> \ni ∋
 imap <buffer> \empty ∅
