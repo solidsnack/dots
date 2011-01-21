@@ -85,6 +85,7 @@ function pretty_prompt {
   local component=""
   buff="$buff""$(bold)""$(blue)"
   buff="$buff"": "                   ;  let "rfill-=2"
+  buff="$buff""$([[ ${s[user]} = root ]] && red)"
   buff="$buff""${s[user]}"           ;  let "rfill-=${#s[user]}"
   buff="$buff""$(gray)"
   buff="$buff"'@'                    ;  let "rfill-=1"
