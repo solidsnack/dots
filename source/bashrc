@@ -46,18 +46,6 @@ FADE="\[\e[01;30m\]"
 REST="\[\e[00;00m\]"
 HIGH="\[\e[01;33m\]"
 
-##  Notes for crazy shit with `tput`.
-#
-#   tput smso # Standout mode or reverse video; works great for black/gray.
-#
-#   tput smul # Underline mode; smooth, continuous underline.
-#
-#   http://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html
-#
-#   The use of `tput' in here actually causes the first line of console input
-#   to be overwritten by the second line.
-
-
 function dir {
   pwd -P | $rsed 's/(.{19})..+.(.{18})/\1...\2/'  # At most 40 chars.
 }
@@ -90,23 +78,37 @@ function red {
   tput setaf 1
 }
 
-function sgr0 {
-  tput sgr0 # Disable bold -- and more?
+function pretty_prompt {
+  local -A s=( [user]=$(user) [host]=$(host) [dir]=$(dir) )
+  local rfill=79
+  local buff=""
+  local component=""
+  buff="$buff""$(bold)""$(blue)"
+  buff="$buff"": "                   ;  let "rfill-=2"
+  buff="$buff""${s[user]}"           ;  let "rfill-=${#s[user]}"
+  buff="$buff""$(gray)"
+  buff="$buff"'@'                    ;  let "rfill-=1"
+  buff="$buff""$(blue)"
+  buff="$buff""${s[host]}"           ;  let "rfill-=${#s[host]}"
+  buff="$buff""$(gray)"
+  buff="$buff"':'                    ;  let "rfill-=1"
+  buff="$buff""$(green)"
+  while read -r -d/ component
+  do
+    case "$?" in
+      0)  buff="$buff""$(green)$component$(gray)/" ;;
+      *)  buff="$buff""$(green)$component" ;;
+    esac
+  done <<<"${s[dir]}"
+  buff="$buff""$(green)$component"   ;  let "rfill-=${#s[dir]}"
+  for space in $(seq 1 $rfill)
+  do
+    buff="$buff"' '
+  done
+  buff="$buff""$(gray);"
+  echo "$buff"
 }
 
-function root_warn {
-  [ $1 = 'root' ] && red
-}
-
-sub="$rsed 's|/|$FADE&$NORM|g ; s/@/$FADE&$DARK/ ; s/:/$FADE&$DARK/'"
-
-function ssh_style {
-  (user; echo -n '@'; host; echo -n ':'; dir ) | xargs | sed -r 's/ //g'
-}
-
-warn=`[ \`whoami\` = root ] && echo -n $BGHI || echo -n ''`
-prompt="\[\`bold ; blue\`\]: \`ssh_style | xargs printf '%-76s' | $sub\` $FADE;
-\[\`bold ; blue\`\]:$FADE;  $REST\[\`sgr0\`\]"
 
 prepend=''
 if [ "${TERM}" = "xterm" ]
@@ -116,7 +118,9 @@ then
   prepend="${xterm_title}"
 fi
 
-export          PS1="${prepend}${prompt}"
+export          PROMPT_COMMAND=pretty_prompt
+#export         PS1="${prepend}${prompt}"
+export          PS1="$DARK:$FADE;  $REST"
 export          PS2='  '
 
 ## end prompt of power ################################################
