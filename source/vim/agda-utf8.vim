@@ -56,6 +56,10 @@ imap <buffer> \prod ∏
 imap <buffer> \sum ∑
 imap <buffer> \le ≤
 imap <buffer> \ge ≥
+imap <buffer> \pge ≽
+imap <buffer> \pgt ≻
+imap <buffer> \ple ≼
+imap <buffer> \plt ≺
 imap <buffer> \pm ±
 imap <buffer> \subset ⊂
 imap <buffer> \subseteq ⊆
