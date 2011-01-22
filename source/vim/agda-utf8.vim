@@ -44,9 +44,12 @@ imap <buffer> <==> ⇔
 " Symbols from mathematics and logic, LaTeX style
 imap <buffer> \forall ∀
 imap <buffer> \exists ∃
+imap <buffer> \proves ⊢
+imap <buffer> \neg ¬
 imap <buffer> \and ∧
 imap <buffer> \or ∨
 imap <buffer> \in ∈
+imap <buffer> \nin ∉
 imap <buffer> \ni ∋
 imap <buffer> \empty ∅
 imap <buffer> \prod ∏
@@ -63,6 +66,7 @@ imap <buffer> \cap ∩
 imap <buffer> \cup ∪
 imap <buffer> \int ∫
 imap <buffer> \therefore ∴
+imap <buffer> \thus ∴
 imap <buffer> \qed ∎
 imap <buffer> \1 𝟙
 imap <buffer> \N ℕ
