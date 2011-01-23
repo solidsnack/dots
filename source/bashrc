@@ -34,11 +34,7 @@ done
 
 
 
-## begin prompt of power ##############################################
-# I used to have the prompt set up as a bunch of functions; but that
-# didn't work very well with sh. Now, I have mastered the various
-# levels of evaluation and quoting of the shell and can confidently
-# write hideous macros!
+## begin prompt #######################################################
 
 DARK="\[\e[01;34m\]"
 NORM="\[\e[01;32m\]"
@@ -47,84 +43,67 @@ REST="\[\e[00;00m\]"
 HIGH="\[\e[01;33m\]"
 
 function dir {
-  pwd -P | $rsed 's/(.{19})..+.(.{18})/\1...\2/'  # At most 40 chars.
+  pwd -P | $rsed 's/^(.{19})..+.(.{18})$/\1...\2/'  # At most 40 chars.
 }
 
 function host {
-  hostname | $rsed 's/(.{9})..+.(.{8})/\1...\2/'  # At most 20 chars.
+  hostname | $rsed 's/^(.{9})..+.(.{8})$/\1...\2/'  # At most 20 chars.
 }
 
 function user {
-  whoami | $rsed 's/(.{7})..+.(.{6})/\1...\2/'    # At most 16 chars.
+  whoami | $rsed 's/^(.{7})..+.(.{6})$/\1...\2/'    # At most 16 chars.
 }
 
 function bold {
   tput bold
 }
 
-function gray {
-  tput setaf 0
-}
-
-function blue {
-  tput setaf 4
-}
-
-function green {
-  tput setaf 2
-}
-
-function red {
-  tput setaf 1
-}
 
 function pretty_prompt {
+  local gray='setaf 0'
+  local blue='setaf 4'
+  local green='setaf 2'
+  local red='setaf 1'
   local -A s=( [user]=$(user) [host]=$(host) [dir]=$(dir) )
   local rfill=79
   local buff=""
   local component=""
-  buff="$buff""$(bold)""$(blue)"
+  buff="$buff""$(tput bold)""$(tput $blue)"
   buff="$buff"": "                   ;  let "rfill-=2"
-  buff="$buff""$([[ ${s[user]} = root ]] && red)"
+  buff="$buff""$([[ ${s[user]} = root ]] && tput $red)"
   buff="$buff""${s[user]}"           ;  let "rfill-=${#s[user]}"
-  buff="$buff""$(gray)"
+  buff="$buff""$(tput $gray)"
   buff="$buff"'@'                    ;  let "rfill-=1"
-  buff="$buff""$(blue)"
+  buff="$buff""$(tput $blue)"
   buff="$buff""${s[host]}"           ;  let "rfill-=${#s[host]}"
-  buff="$buff""$(gray)"
+  buff="$buff""$(tput $gray)"
   buff="$buff"':'                    ;  let "rfill-=1"
-  buff="$buff""$(green)"
+  buff="$buff""$(tput $green)"
   while read -r -d/ component
   do
+    buff="$buff""$(tput $green)"
+    buff="$buff""$component"         ;  let "rfill-=${#component}"
     case "$?" in
-      0)  buff="$buff""$(green)$component$(gray)/" ;;
-      *)  buff="$buff""$(green)$component" ;;
+      0)  buff="$buff""$(tput $gray)"
+          buff="$buff"'/'            ;  let "rfill-=1" ;;
     esac
   done <<<"${s[dir]}"
-  buff="$buff""$(green)$component"   ;  let "rfill-=${#s[dir]}"
+  buff="$buff""$(tput $green)"
+  buff="$buff""$component"           ;  let "rfill-=${#component}"
   for space in $(seq 1 $rfill)
   do
     buff="$buff"' '
   done
-  buff="$buff""$(gray);"
+  buff="$buff""$(tput $gray);"
   echo "$buff"
 }
 
 
-prepend=''
-if [ "${TERM}" = "xterm" ]
-then
-  my_tty=`tty | awk -F/ '{ print $3 $4}'`
-  xterm_title="\[\e]0;${my_tty} \u@\H\007\]"
-  prepend="${xterm_title}"
-fi
-
 export          PROMPT_COMMAND=pretty_prompt
-#export         PS1="${prepend}${prompt}"
 export          PS1="$DARK:$FADE;  $REST"
 export          PS2='  '
 
-## end prompt of power ################################################
+## end prompt #########################################################
 
 
 ##if which vimpager >&/dev/null
