@@ -54,11 +54,6 @@ function user {
   whoami | $rsed 's/^(.{7})..+.(.{6})$/\1...\2/'    # At most 16 chars.
 }
 
-function bold {
-  tput bold
-}
-
-
 function pretty_prompt {
   local gray='setaf 0'
   local blue='setaf 4'
