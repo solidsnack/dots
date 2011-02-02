@@ -46,16 +46,24 @@ FADE="\[\e[01;30m\]"
 REST="\[\e[00;00m\]"
 HIGH="\[\e[01;33m\]"
 
+function cutter {
+  $rsed "s/(.{$1})..+.(.{$2})/\1...\2/"
+}
+
+function escape_nl {
+  $rsed -n '1 { x ;} ; 2,$ { H ; x ; s/\n/^J/ ; x ;} ; $ { x ; p ;}'
+}
+
 function dir {
-  pwd -P | $rsed 's/(.{19})..+.(.{18})/\1...\2/'  # At most 40 chars.
+  pwd -P | escape_nl | cat -t | cutter 19 18 # At most 40 chars.
 }
 
 function host {
-  hostname | $rsed 's/(.{9})..+.(.{8})/\1...\2/'  # At most 20 chars.
+  hostname | cutter 9 8  # At most 20 chars.
 }
 
 function user {
-  whoami | $rsed 's/(.{7})..+.(.{6})/\1...\2/'    # At most 16 chars.
+  whoami | cutter 7 6   # At most 16 chars.
 }
 
 function bold {
@@ -80,11 +88,12 @@ function red {
 
 function pretty_prompt {
   local -A s=( [user]=$(user) [host]=$(host) [dir]=$(dir) )
-  local rfill=79
+  local rfill=80
   local buff=""
   local component=""
   buff="$buff""$(bold)""$(blue)"
-  buff="$buff"": "                   ;  let "rfill-=2"
+  buff="$buff""# "                   ;  let "rfill-=2"
+  buff="$buff""$(blue)"
   buff="$buff""$([[ ${s[user]} = root ]] && red)"
   buff="$buff""${s[user]}"           ;  let "rfill-=${#s[user]}"
   buff="$buff""$(gray)"
@@ -106,7 +115,6 @@ function pretty_prompt {
   do
     buff="$buff"' '
   done
-  buff="$buff""$(gray);"
   echo "$buff"
 }
 
