@@ -116,7 +116,6 @@ export          PS2='  '
 export          EDITOR=vim
 export          TEXEDIT="${EDITOR} +%d %s"
 export          PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin:./bin:.
-export          TZ=/usr/share/zoneinfo/America/Los_Angeles
 
 alias           go='pushd'
 alias           b='popd'
