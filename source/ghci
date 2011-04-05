@@ -4,4 +4,5 @@
 :set -fwarn-unused-imports
 :set -fglasgow-exts
 :set +t
+:set prompt "| %s\n: "
 
