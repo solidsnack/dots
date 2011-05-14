@@ -1,7 +1,9 @@
 :set -XOverloadedStrings
 :set -Wall
-:set -fno-warn-name-shadowing
 :set -fwarn-unused-imports
+:set -fwarn-incomplete-patterns
+:set -fno-warn-missing-signatures
+:set -fno-warn-name-shadowing
 :set -fglasgow-exts
 :set +t
 :set prompt "- %s\n> "
