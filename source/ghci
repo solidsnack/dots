@@ -4,6 +4,8 @@
 :set -fwarn-incomplete-patterns
 :set -fno-warn-missing-signatures
 :set -fno-warn-name-shadowing
+:set -fno-warn-orphans
+:set -fno-warn-unused-imports
 :set -fglasgow-exts
 :set +t
 :set prompt "- %s\n> "
