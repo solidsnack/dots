@@ -65,38 +65,32 @@ function pretty_prompt {
   local user=$(user)
   local host=$(host)
   local dir=$(dir)
-  local rfill=80
   local buff=""
   local component=""
   buff="$buff""$(tput bold)""$(tput $blue)"
-  buff="$buff""# "                   ;  let "rfill-=2"
+  buff="$buff""# "
   buff="$buff""$([[ $user = root ]] && tput $red)"
-  buff="$buff""$user"                ;  let "rfill-=${#user}"
+  buff="$buff""$user"
   buff="$buff""$(tput $gray)"
-  buff="$buff"'@'                    ;  let "rfill-=1"
+  buff="$buff"'@'
   buff="$buff""$(tput $blue)"
-  buff="$buff""$host"                ;  let "rfill-=${#host}"
+  buff="$buff""$host"
   buff="$buff""$(tput $gray)"
-  buff="$buff"':'                    ;  let "rfill-=1"
+  buff="$buff"':'
   buff="$buff""$(tput $green)"
   while read -r -d/ component
   do
     buff="$buff""$(tput $green)"
-    buff="$buff""$component"         ;  let "rfill-=${#component}"
+    buff="$buff""$component"
     case "$?" in
       0)  buff="$buff""$(tput $gray)"
-          buff="$buff"'/'            ;  let "rfill-=1" ;;
+          buff="$buff"'/'
     esac
   done <<<"$dir"
   buff="$buff""$(tput $green)"
-  buff="$buff""$component"           ;  let "rfill-=${#component}"
-  for space in $(seq 1 $rfill)
-  do
-    buff="$buff"' '
-  done
+  buff="$buff""$component"
   echo "$buff"
 }
-
 
 export          PROMPT_COMMAND=pretty_prompt
 export          PS1="$DARK:$FADE;  $REST"
