@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-##
-##  So many years of fooling around...
-##
-##
 
-
-[ -e $f ] && rm -rf $HISTFILE
+[[ -f $HISTFILE ]] && rm -rf $HISTFILE
 
 
 function dynamic_aliases {
-  if sed --version >&/dev/null 2>&1
+  if sed --version >&/dev/null
   then  # GNU sed
     rsed="sed -r"
   else  # BSD sed
     rsed="sed -E"
   fi
-  if ls --version >&/dev/null 2>&1
+  if ls --version >&/dev/null
   then  # GNU ls
     alias l='ls --color'
     alias ll='ls -lA --color'
@@ -29,7 +24,7 @@ dynamic_aliases
 
 for d in /etc /usr/local/etc /opt/local/etc
 do
-  [ -f $d/bash_completion ] && source $d/bash_completion
+  [[ -f $d/bash_completion ]] && source $d/bash_completion
 done
 
 
@@ -123,10 +118,10 @@ alias           go='pushd'
 alias           b='popd'
 alias           h='history'
 alias           r='rm -r'
-alias           :x='exit'
-alias           :q='exit'
-alias           :e=$EDITOR
 
 set -o vi
+shopt -s lithist
 
+# Load RVM if present.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
