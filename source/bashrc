@@ -69,7 +69,7 @@ function pretty_prompt {
   local component=""
   buff="$buff""$(tput bold)""$(tput $blue)"
   buff="$buff""# "
-  buff="$buff""$([[ $user = root ]] && tput $red)"
+  buff="$buff""$([[ $user != root ]] || tput $red)"
   buff="$buff""$user"
   buff="$buff""$(tput $gray)"
   buff="$buff"'@'
