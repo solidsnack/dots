@@ -15,13 +15,14 @@ servers = (
   },
   { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
   { address = "im.bitlbee.org"; chatnet = "BEE"; port = "6667"; },
-  { 
+  { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
+  {
     address = "irc.freenode.net";
     chatnet = "FreeNode";
-    port = "8001";
-  },
-  { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
-
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "no";
+  }
 );
 
 chatnets = {
@@ -71,8 +72,8 @@ chatnets = {
   };
   FreeNode = {
     type = "IRC";
-    username = "jsnx";
-    nick = "jsnx";
+    username = "solidsnack";
+    nick = "solidsnack";
     autosendcmd = "/^msg nickserv identify breadbeard; wait -FreeNode 2000";
   };
   OFTC = {
