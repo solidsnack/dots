@@ -22,9 +22,9 @@ function dynamic_aliases {
 
 dynamic_aliases
 
-for d in /etc /usr/local/etc /opt/local/etc
+for f in {/usr/local/etc,/opt/local/etc}/profile
 do
-  [[ -f $d/bash_completion ]] && source $d/bash_completion
+  [[ -s $f ]] && source "$f"
 done
 
 
@@ -116,6 +116,12 @@ alias           r='rm -r'
 set -o vi
 shopt -s lithist
 
+# Load local extensions
+[[ ! -d ~/.bashrc.d ]] || for f in ~/.bashrc.d/*.{sh,bash}
+                          do
+                            [[ ! -f "$f" ]] || source "$f"
+                          done
+
 # Load RVM if present.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ ! -s ~/.rvm/scripts/rvm ]] || source ~/.rvm/scripts/rvm
 
