@@ -102,8 +102,10 @@ channels = (
   { name = "#linux"; chatnet = "freenode"; autojoin = "No"; },
   { name = "#python"; chatnet = "freenode"; autojoin = "No"; },
   { name = "#haskell"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#haskell-blah"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#haskell-blah"; chatnet = "freenode"; autojoin = "No"; },
   { name = "#ghc"; chatnet = "freenode"; autojoin = "No"; },
+  { name = "#agda"; chatnet = "freenode"; autojoin = "No"; },
+  { name = "#clojure"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#math"; chatnet = "freenode"; autojoin = "No"; }
 );
 
