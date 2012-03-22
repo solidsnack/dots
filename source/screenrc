@@ -1,3 +1,4 @@
+shell -$SHELL
 nethack on
 vbell on
 defutf8 on
@@ -28,7 +29,7 @@ caption always "%{+b kG} %=%{-s} %{.K}%-w%{.B}%n %{.G}%t%{.K}%+w%{.G} %{+s} %="
 #         %n      number of the current window
 #         %t      command in the current window 
 #         %{.K}   foreground to gray, background unchanged
-#         %{.B}   foreground to gray, background unchanged
+#         %{.B}   foreground to blue, background unchanged
 #         %{.G}   foreground to green, background unchanged
 #
 #  |L|  blocks in the left margin
