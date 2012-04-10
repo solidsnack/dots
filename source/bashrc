@@ -27,6 +27,10 @@ do
   [[ -s $f ]] && source "$f"
 done
 
+for f in /usr/local/etc/bash_completion.d/*
+do
+  [[ ! -s "$f" ]] || source "$f"
+done
 
 
 ## begin prompt #######################################################
@@ -123,5 +127,9 @@ shopt -s lithist
                           done
 
 # Load RVM if present.
-[[ ! -s ~/.rvm/scripts/rvm ]] || source ~/.rvm/scripts/rvm
+if [[ -s ~/.rvm/scripts/rvm ]]
+then
+  source ~/.rvm/scripts/rvm
+  PATH=$PATH:"$HOME/.rvm/bin" # Add RVM to PATH for scripting
+fi
 

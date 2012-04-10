@@ -10,8 +10,7 @@ pathname
 }.each do |lib|
   begin
     require lib
-  rescue LoadError => e
-    puts e
+  rescue LoadError
   end
 end
 
