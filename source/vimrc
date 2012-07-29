@@ -307,10 +307,11 @@ autocmd BufRead *.wiki setlocal filetype=wikipedia
 autocmd BufRead www.tumblr.com_textpost* setlocal filetype=mkd
 
 autocmd FileType ldif setlocal list
-autocmd FileType mail setlocal textwidth=64 wrap spell spelllang=en_us
 autocmd FileType mkd setlocal textwidth=78 wrap
 autocmd FileType tex setlocal textwidth=78 wrap spell spelllang=en_us
 
+autocmd FileType mail setlocal textwidth=64 wrap spell spelllang=en_us
+autocmd BufRead mail.google.com_*_*.txt setlocal filetype=mail
 
 " wikipedia is an annoying format
 " i need to figure out some 1337 h4x for it
