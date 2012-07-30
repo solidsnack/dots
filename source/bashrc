@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[[ -f $HISTFILE ]] && rm -rf $HISTFILE
+[[ ! -f $HISTFILE ]] || rm -rf "$HISTFILE"
 
 
 function dynamic_aliases {
