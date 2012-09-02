@@ -35,30 +35,30 @@ done
 
 ## begin prompt #######################################################
 
-DARK="\[\e[01;34m\]"
-NORM="\[\e[01;32m\]"
-FADE="\[\e[01;30m\]"
-REST="\[\e[00;00m\]"
-HIGH="\[\e[01;33m\]"
-
-function cutter {
-  $rsed "s/(.{$1})..+.(.{$2})/\1...\2/"
+function ellipsis {
+  local n=$(( 10#$1 - 3 ))
+  local b=$(( $n / 2 ))
+  local a=$(( $n - $b ))
+  local s="$2"
+  local color="${3:-}"
+  if [[ ${#s} -le $1 ]]
+  then
+    printf '%s\n' "$s"
+  else
+    local i=$(( ${#s} - $b + 1 ))
+    local m="$(cut -c1-$a <<<"$s")"
+    local n="$(cut -c$i-${#s} <<<"$s")"
+    if [[ "$color" ]]
+    then
+      printf '%s\n' "$m$(tput $gray)...$(tput $color)$n"
+    else
+      printf '%s\n' "$m$n"
+    fi
+  fi
 }
 
-function escape_nl {
-  $rsed -n '1 { x ;} ; 2,$ { H ; x ; s/\n/^J/ ; x ;} ; $ { x ; p ;}'
-}
-
-function dir {
-  pwd -P | escape_nl | cat -t | cutter 19 18 # At most 40 chars.
-}
-
-function host {
-  hostname | cutter 9 8  # At most 20 chars.
-}
-
-function user {
-  whoami | cutter 7 6   # At most 16 chars.
+function escape_special {
+  sed -n '1 { x ;} ; 2,$ { H ; x ; s/\n/^J/ ; x ;} ; $ { x ; p ;}' | cat -t
 }
 
 function pretty_prompt {
@@ -66,38 +66,38 @@ function pretty_prompt {
   local blue='setaf 4'
   local green='setaf 2'
   local red='setaf 1'
-  local user=$(user)
-  local host=$(host)
-  local dir=$(dir)
+  local user="$(ellipsis 16 "$(whoami)" "$blue")"
+  local host="$(ellipsis 20 "$(hostname)" "$blue")"
+  local dir="$(ellipsis 40 "$(pwd -P | escape_special)" "$green")"
   local buff=""
   local component=""
-  buff="$buff""$(tput bold)""$(tput $blue)"
-  buff="$buff""# "
-  buff="$buff""$([[ $user != root ]] || tput $red)"
-  buff="$buff""$user"
-  buff="$buff""$(tput $gray)"
-  buff="$buff"'@'
-  buff="$buff""$(tput $blue)"
-  buff="$buff""$host"
-  buff="$buff""$(tput $gray)"
-  buff="$buff"':'
-  buff="$buff""$(tput $green)"
+  buff+="$(tput bold)""$(tput $blue)"
+  buff+="# "
+  buff+="$([[ $user != root ]] || tput $red)"
+  buff+="$user"
+  buff+="$(tput $gray)"
+  buff+='@'
+  buff+="$(tput $blue)"
+  buff+="$host"
+  buff+="$(tput $gray)"
+  buff+=':'
+  buff+="$(tput $green)"
   while read -r -d/ component
   do
-    buff="$buff""$(tput $green)"
-    buff="$buff""$component"
-    case "$?" in
-      0)  buff="$buff""$(tput $gray)"
-          buff="$buff"'/'
+    buff+="$(tput $green)"
+    buff+="$component"
+    case $? in
+      0) buff+="$(tput $gray)"
+         buff+='/'
     esac
   done <<<"$dir"
-  buff="$buff""$(tput $green)"
-  buff="$buff""$component"
-  echo "$buff"
+  buff+="$(tput $green)"
+  buff+="$component"
+  printf '%s\n' "$buff"
 }
 
 export          PROMPT_COMMAND=pretty_prompt
-export          PS1="$DARK:$FADE;  $REST"
+export          PS1="\[\e[01;34m\]:\[\e[01;30m\];  \[\e[00;00m\]"
 export          PS2='  '
 
 ## end prompt #########################################################
@@ -123,13 +123,6 @@ shopt -s lithist
 # Load local extensions
 [[ ! -d ~/.bashrc.d ]] || for f in ~/.bashrc.d/*.{sh,bash}
                           do
-                            [[ ! -f "$f" ]] || source "$f"
+                            [[ ! -s "$f" ]] || source "$f"
                           done
-
-# Load RVM if present.
-if [[ -s ~/.rvm/scripts/rvm ]]
-then
-  source ~/.rvm/scripts/rvm
-  PATH=$PATH:"$HOME/.rvm/bin" # Add RVM to PATH for scripting
-fi
 
