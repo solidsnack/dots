@@ -14,6 +14,7 @@ set textwidth=78 wrap
 set nohlsearch
 set foldexpr=indent(v:lnum)
 set foldmethod=expr
+set printoptions=header:0
 
 " I hate backups!
 set nobackup
