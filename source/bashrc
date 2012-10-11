@@ -108,9 +108,15 @@ export          PS2='  '
 ##  export        PAGER=vimpager
 ##  export        MANPAGER=vimmanpager
 ##fi
-export          EDITOR=vim
-export          TEXEDIT="${EDITOR} +%d %s"
-export          PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin:./bin:.
+export EDITOR=vim
+export TEXEDIT="${EDITOR} +%d %s"
+for d in /sbin /usr/sbin "$HOME/bin" ./bin .
+do
+  case "$PATH" in *:"$d"|*:"$d":*|"$d":*) : ;;
+                  *)                      PATH="$PATH":"$d" ;;
+  esac
+done
+export PATH
 
 alias           go='pushd'
 alias           b='popd'
