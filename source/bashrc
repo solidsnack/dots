@@ -112,9 +112,7 @@ export EDITOR=vim
 export TEXEDIT="${EDITOR} +%d %s"
 for d in /sbin /usr/sbin "$HOME/bin" ./bin .
 do
-  case "$PATH" in *:"$d"|*:"$d":*|"$d":*) : ;;
-                  *)                      PATH="$PATH":"$d" ;;
-  esac
+  [[ $PATH =~ ^(.*:)$d(:.*)?$ ]] || PATH="$PATH":"$d"
 done
 export PATH
 
