@@ -11,7 +11,7 @@ augroup END
 
 " Handle escript Erlang files.
 au BufRead *
-\ if getline(1) =~ "escript" |
+\ if getline(1) =~ '^#!.*\<escript\>' |
 \   set filetype=erlang |
 \ endif
 
