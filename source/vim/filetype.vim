@@ -27,27 +27,27 @@ augroup filetypedetect
   au! BufRead,BufNewFile */bash-fc-* setfiletype sh
   " it's important that .hrl files should be colored as .erl files
   au! BufRead,BufNewFile *.hrl setfiletype erlang
-  " i made up yet another BNF 
-  au! BufRead,BufNewFile *.yabnf setfiletype yabnf
-  au! BufRead,BufNewFile *.bnf setfiletype yabnf
   " xen's .xm files are Python
   au! BufRead,BufNewFile *.xm setfiletype python
   " Files that are also Ruby. 
-  au! BufRead,BufNewFile *.ru setfiletype ruby
-  au! BufRead,BufNewFile *.rake setfiletype ruby
-  au! BufRead,BufNewFile *.god setfiletype ruby
+  au! BufRead,BufNewFile *.ru,*.rake setfiletype ruby
   " Files from Google mail text areas are mail.
   au! BufRead,BufNewFile mail.google.com_*body_* setfiletype mail
-  au! BufRead,BufNewFile *.mail setfiletype mail
-  au! BufRead,BufNewFile *.email setfiletype mail
+  au! BufRead,BufNewFile *.mail,*.email setfiletype mail
   " NGinX configuration files.
-  au! BufRead,BufNewFile nginx.conf setfiletype nginx
+  au! BufRead,BufNewFile nginx.conf,*.nginx setfiletype nginx
   au! BufRead,BufNewFile /etc/nginx/*.conf setfiletype nginx
   au! BufRead,BufNewFile /etc/nginx/*/*.conf setfiletype nginx
+  au! BufRead,BufNewFile /etc/nginx/sites-enabled/* setfiletype nginx
+  au! BufRead,BufNewFile /etc/nginx/sites-available/* setfiletype nginx
   " Relocated crontabs.
-  au! BufRead,BufNewFile *.crontab setfiletype crontab 
+  au! BufRead,BufNewFile *.crontab,*.cron,cron setfiletype crontab
+  " Upstart files.
+  au! BufNewFile,BufRead */etc/init/*.conf,*/.init/*.conf setfiletype upstart
+  au! BufNewFile,BufRead */etc/init/*.override setfiletype upstart
+  au! BufNewFile,BufRead */.init/*.override setfiletype upstart
+  au! BufNewFile,BufRead *.upstart setfiletype upstart
+  " Postgres is the SQL engine I use most.
+  au! BufNewFile,BufRead *.sql,*.psql setfiletype pgsql
 augroup END
-
-
-
 
