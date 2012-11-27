@@ -46,7 +46,7 @@ augroup filetypedetect
   au! BufNewFile,BufRead */etc/init/*.conf,*/.init/*.conf setfiletype upstart
   au! BufNewFile,BufRead */etc/init/*.override setfiletype upstart
   au! BufNewFile,BufRead */.init/*.override setfiletype upstart
-  au! BufNewFile,BufRead *.upstart setfiletype upstart
+  au! BufNewFile,BufRead upstart,*.upstart setfiletype upstart
   " Postgres is the SQL engine I use most.
   au! BufNewFile,BufRead *.sql,*.psql setfiletype pgsql
 augroup END
