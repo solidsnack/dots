@@ -1,7 +1,6 @@
 # i hate make
 #
-install: link-source
-
-link-source:
-	install/link-source.sh
+.PHONY: install
+install:
+	( cd source && for p in *; do ln -nsf "$$PWD/$$p" ~/."$$p"; done )
 
