@@ -30,7 +30,7 @@ augroup filetypedetect
   " xen's .xm files are Python
   au! BufRead,BufNewFile *.xm setfiletype python
   " Files that are also Ruby. 
-  au! BufRead,BufNewFile *.ru,*.rake setfiletype ruby
+  au! BufRead,BufNewFile *.ru,*.rake,Vagrantfile setfiletype ruby
   " Files from Google mail text areas are mail.
   au! BufRead,BufNewFile mail.google.com_*body_* setfiletype mail
   au! BufRead,BufNewFile *.mail,*.email setfiletype mail
