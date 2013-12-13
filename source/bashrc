@@ -23,13 +23,11 @@ function dynamic_aliases {
 dynamic_aliases
 
 for f in {/usr/local/etc,/opt/local/etc}/profile
-do
-  [[ -s $f ]] && source "$f"
+do [[ ! -s $f ]] || source "$f"
 done
 
 for f in /usr/local/etc/bash_completion.d/*
-do
-  [[ ! -s "$f" ]] || source "$f"
+do [[ ! -s $f ]] || source "$f"
 done
 
 
@@ -111,22 +109,17 @@ export          PS2='  '
 export EDITOR=vim
 export TEXEDIT="${EDITOR} +%d %s"
 for d in /sbin /usr/sbin "$HOME/bin" ./bin .
-do
-  [[ $PATH =~ ^(.*:)$d(:.*)?$ ]] || PATH="$PATH":"$d"
+do [[ $PATH =~ ^(.*:)$d(:.*)?$ ]] || PATH="$PATH":"$d"
 done
 export PATH
 
-alias           go='pushd'
-alias           b='popd'
-alias           h='history'
-alias           r='rm -r'
+alias h='history'
 
 set -o vi
 shopt -s lithist
 
 # Load local extensions
 [[ ! -d ~/.bashrc.d ]] || for f in ~/.bashrc.d/*.{sh,bash}
-                          do
-                            [[ ! -s "$f" ]] || source "$f"
+                          do [[ ! -s "$f" ]] || source "$f"
                           done
 
