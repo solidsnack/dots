@@ -49,5 +49,7 @@ augroup filetypedetect
   au! BufNewFile,BufRead upstart,*.upstart setfiletype upstart
   " Postgres is the SQL engine I use most.
   au! BufNewFile,BufRead *.sql,*.psql setfiletype pgsql
+  " Markdown, not Modula
+  au! BufNewFile,BufRead *.md setfiletype mkd
 augroup END
 
