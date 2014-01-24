@@ -337,3 +337,4 @@ syntax match SignificantSpace /\v^\t+/
 " So should trailing whitespace.
 syntax match SignificantSpace /\v\s+$/
 
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
