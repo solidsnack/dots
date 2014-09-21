@@ -1,0 +1,3 @@
+[submodule "source/vim/jsx.vim"]
+	path = source/vim/jsx.vim
+	url = https://github.com/jsx/jsx.vim.git
