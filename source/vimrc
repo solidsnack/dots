@@ -28,7 +28,6 @@ set backspace=indent,eol,start
 " end freebsd needs
 
 
-set runtimepath+=~/.vim/jsx.vim
 
 
 function! haskell:module()
