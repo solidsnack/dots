@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-[[ ! -f $HISTFILE ]] || rm -rf "$HISTFILE"
-
+function unmv {
+  mv "$2" "$1"
+}
 
 function dynamic_aliases {
   if sed --version >&/dev/null
@@ -18,9 +19,7 @@ function dynamic_aliases {
     alias l='ls -G'
     alias ll='ls -GlA'
   fi
-}
-
-dynamic_aliases
+}; dynamic_aliases
 
 for f in {/usr/local/etc,/opt/local/etc}/profile
 do [[ ! -s $f ]] || source "$f"
@@ -48,7 +47,7 @@ function ellipsis {
     local n="$(cut -c$i-${#s} <<<"$s")"
     if [[ "$color" ]]
     then
-      printf '%s\n' "$m$(tput $gray)...$(tput $color)$n"
+      printf '%s\n' "$m$gray...$color$n"
     else
       printf '%s\n' "$m$n"
     fi
@@ -59,37 +58,40 @@ function escape_special {
   sed -n '1 { x ;} ; 2,$ { H ; x ; s/\n/^J/ ; x ;} ; $ { x ; p ;}' | cat -t
 }
 
+
+gray="$(tput setaf 0)"
+blue="$(tput setaf 4)"
+green="$(tput setaf 2)"
+red="$(tput setaf 1)"
+bold="$(tput bold)"
+
 function pretty_prompt {
-  local gray='setaf 0'
-  local blue='setaf 4'
-  local green='setaf 2'
-  local red='setaf 1'
   local user="$(ellipsis 16 "$(whoami)" "$blue")"
   local host="$(ellipsis 20 "$(hostname)" "$blue")"
   local dir="$(ellipsis 40 "$(pwd -P | escape_special)" "$green")"
   local buff=""
   local component=""
-  buff+="$(tput bold)""$(tput $blue)"
+  buff+="$bold""$blue"
   buff+="# "
-  buff+="$([[ $user != root ]] || tput $red)"
+  buff+="$([[ $user != root ]] || echo "$red")"
   buff+="$user"
-  buff+="$(tput $gray)"
+  buff+="$gray"
   buff+='@'
-  buff+="$(tput $blue)"
+  buff+="$blue"
   buff+="$host"
-  buff+="$(tput $gray)"
+  buff+="$gray"
   buff+=':'
-  buff+="$(tput $green)"
+  buff+="$green"
   while read -r -d/ component
   do
-    buff+="$(tput $green)"
+    buff+="$green"
     buff+="$component"
     case $? in
-      0) buff+="$(tput $gray)"
+      0) buff+="$gray"
          buff+='/'
     esac
   done <<<"$dir"
-  buff+="$(tput $green)"
+  buff+="$green"
   buff+="$component"
   printf '%s\n' "$buff"
 }
@@ -114,6 +116,8 @@ done
 export PATH
 
 alias h='history'
+
+rm -f "$HISTFILE"
 
 set -o vi
 shopt -s lithist
