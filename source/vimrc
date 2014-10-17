@@ -28,6 +28,7 @@ set backspace=indent,eol,start
 " end freebsd needs
 
 
+execute pathogen#infect()
 
 
 function! haskell:module()
