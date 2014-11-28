@@ -1,0 +1,12 @@
+[submodule "source/vim/bundle/vim-markdown"]
+	path = source/vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "source/vim/bundle/typescript-vim"]
+	path = source/vim/bundle/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "source/vim/bundle/vim-javascript"]
+	path = source/vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "source/vim/bundle/vim-jsx"]
+	path = source/vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git

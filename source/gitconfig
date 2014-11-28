@@ -10,3 +10,8 @@
 	signingkey = C1EBC57DC55144F35460C8DF1FD4C6C1FED18A2B
 
 
+[gist]
+	private = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
