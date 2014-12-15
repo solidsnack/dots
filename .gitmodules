@@ -10,3 +10,6 @@
 [submodule "source/vim/bundle/vim-jsx"]
 	path = source/vim/bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule "source/vim/bundle/idris-vim"]
+	path = source/vim/bundle/idris-vim
+	url = https://github.com/idris-hackers/idris-vim.git
