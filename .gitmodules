@@ -3,7 +3,7 @@
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "source/vim/bundle/typescript-vim"]
 	path = source/vim/bundle/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
+	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "source/vim/bundle/vim-javascript"]
 	path = source/vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -13,3 +13,6 @@
 [submodule "source/vim/bundle/idris-vim"]
 	path = source/vim/bundle/idris-vim
 	url = https://github.com/idris-hackers/idris-vim.git
+[submodule "source/vim/bundle/vim-scala"]
+	path = source/vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala.git
