@@ -16,3 +16,9 @@
 [submodule "source/vim/bundle/vim-scala"]
 	path = source/vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala.git
+[submodule "source/vim/bundle/salt-vim"]
+	path = source/vim/bundle/salt-vim
+	url = https://github.com/saltstack/salt-vim.git
+[submodule "source/vim/bundle/Vim-Jinja2-Syntax"]
+	path = source/vim/bundle/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
