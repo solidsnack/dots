@@ -46,6 +46,16 @@ let g:haddock_indexfiledir   =  "/Users/Shared/.vim/"
 autocmd BufRead *.wiki setlocal filetype=wikipedia
 autocmd BufRead www.tumblr.com_textpost* setlocal filetype=mkd
 
+function s:MkNonExDir(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+
 autocmd FileType ldif setlocal list
 autocmd FileType mkd setlocal textwidth=78 wrap
 autocmd FileType tex setlocal textwidth=78 wrap spell spelllang=en_us
