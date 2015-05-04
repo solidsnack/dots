@@ -59,13 +59,12 @@ function escape_special {
 }
 
 
-gray="$(tput setaf 0)"
-blue="$(tput setaf 4)"
-green="$(tput setaf 2)"
-red="$(tput setaf 1)"
-bold="$(tput bold)"
-
 function pretty_prompt {
+  local gray="$(tput setaf 0)"
+  local blue="$(tput setaf 4)"
+  local green="$(tput setaf 2)"
+  local red="$(tput setaf 1)"
+  local bold="$(tput bold)"
   local user="$(ellipsis 16 "$(whoami)" "$blue")"
   local host="$(ellipsis 20 "$(hostname)" "$blue")"
   local dir="$(ellipsis 40 "$(pwd -P | escape_special)" "$green")"
@@ -96,9 +95,9 @@ function pretty_prompt {
   printf '%s\n' "$buff"
 }
 
-export          PROMPT_COMMAND=pretty_prompt
-export          PS1="\[\e[01;34m\]:\[\e[01;30m\];  \[\e[00;00m\]"
-export          PS2='  '
+export PROMPT_COMMAND=pretty_prompt
+export PS1="\[\e[01;34m\]:\[\e[01;30m\];  \[\e[00;00m\]"
+export PS2='  '
 
 ## end prompt #########################################################
 
