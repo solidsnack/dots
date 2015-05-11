@@ -22,3 +22,6 @@
 [submodule "source/vim/bundle/Vim-Jinja2-Syntax"]
 	path = source/vim/bundle/Vim-Jinja2-Syntax
 	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
+[submodule "source/vim/bundle/purescript-vim"]
+	path = source/vim/bundle/purescript-vim
+	url = https://github.com/raichoo/purescript-vim.git
