@@ -7,7 +7,7 @@ backtick 1 1 1 date -u +%Y-%m-%dT%TZ
 
 logtstamp on
 logtstamp after 250
-logtstamp string "%1`" 
+logtstamp string "%1`"
 logfile "screenlog.%t.%1`"
 
 bindkey -t "^asudo" screen sudo -s
