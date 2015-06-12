@@ -25,3 +25,15 @@
 [submodule "source/vim/bundle/purescript-vim"]
 	path = source/vim/bundle/purescript-vim
 	url = https://github.com/raichoo/purescript-vim.git
+[submodule "source/vim/bundle/nimrod.vim"]
+	path = source/vim/bundle/nimrod.vim
+	url = https://github.com/zah/nimrod.vim.git
+[submodule "source/vim/bundle/rust.vim"]
+	path = source/vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule "source/vim/bundle/syntastic"]
+	path = source/vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "source/vim/bundle/vim-hashicorp-tools"]
+	path = source/vim/bundle/vim-hashicorp-tools
+	url = https://github.com/markcornick/vim-hashicorp-tools.git
