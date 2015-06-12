@@ -28,7 +28,7 @@ set backspace=indent,eol,start
 " end freebsd needs
 
 
-let g:jsx_pragma_required = 0
+let g:jsx_pragma_required = 1
 execute pathogen#infect()
 
 runtime macros/justify.vim
@@ -77,13 +77,29 @@ endif
 " au FileType c setlocal tabstop=8 shiftwidth=8 noexpandtab
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab
 
+let g:syntastic_rst_checkers = ['rstcheck']
+
+" Nim needs this stuff.
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Nim needs this, too.
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i
+
 " annoying initial highlights removed
 nohlsearch
 
-hi SignificantSpace ctermfg=cyan cterm=underline
-" Leading tabs should be highlighted.
-syntax match SignificantSpace /\v^\t+/
-" So should trailing whitespace.
-syntax match SignificantSpace /\v\s+$/
-
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+highlight ExtraWhitespace ctermfg=cyan cterm=underline
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
