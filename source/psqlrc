@@ -1,8 +1,7 @@
-\set PROMPT1 '%[%033[1;30m%]-- %n@%M/%~ %#%[%033[32m%]%x\n%[%033[0m%]'
+\set PROMPT1 '%[%033[1;30m%]--%# %n@%M/%~ %[%033[32m%]%x\n%[%033[0m%]'
 \set PROMPT2 ''
 \set PROMPT3 ''
 \pset linestyle unicode
 \pset expanded auto
 \pset null '\\N'
-BEGIN;
 \timing
