@@ -1,0 +1,21 @@
+[main]
+
+smart_completion = True
+multi_line = True
+
+log_file = ~/.pgcli.log
+log_level = INFO
+
+timing = True
+
+# Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
+# orgtbl, rst, mediawiki, html, latex, latex_booktabs.
+# Recommended: psql, fancy_grid and grid.
+table_format = fancy_grid
+
+# Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,
+# native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,
+# colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity
+syntax_style = default
+
+vi = True
