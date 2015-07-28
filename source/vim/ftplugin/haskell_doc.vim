@@ -43,6 +43,9 @@ let s:scriptname = "haskell_doc.vim"
 "   g:ghc                        [optional] which ghc to call
 "   g:ghc_pkg                    [optional] which ghc_pkg to call
 
+" Something is broken.
+finish
+
 " been here before?
 if exists("g:haddock_index")
   finish
