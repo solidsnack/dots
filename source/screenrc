@@ -4,6 +4,7 @@ defutf8 on
 
 defscrollback 16384
 backtick 1 1 1 date -u +%Y-%m-%dT%TZ
+termcapinfo xterm-256color|xterm-color|xterm|xterms|xs|rxvt ti@:te@
 
 logtstamp on
 logtstamp after 250
