@@ -25,7 +25,8 @@ for f in {/usr/local/etc,/opt/local/etc}/profile
 do [[ ! -s $f ]] || source "$f"
 done
 
-for f in /etc/bash_completion /usr/local/etc/bash_completion.d/*
+
+for f in /etc/bash_completion /usr/local/etc/bash_completion
 do [[ ! -s $f ]] || source "$f"
 done
 
