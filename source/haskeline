@@ -1,16 +1,5 @@
-
 editMode: Vi
 
 keyseq: "\ESC[H" home
 keyseq: "\ESC[F" end
-
-bind: { { } left
-bind: } right
-bind: ( ( ) left
-bind: ) right
-bind: [ [ ] left
-bind: ] right
-bind: ' ' ' left
-bind: " " " left
-
 
