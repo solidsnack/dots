@@ -37,3 +37,6 @@
 [submodule "source/vim/bundle/vim-hashicorp-tools"]
 	path = source/vim/bundle/vim-hashicorp-tools
 	url = https://github.com/markcornick/vim-hashicorp-tools.git
+[submodule "source/vim/bundle/rustpeg.vim"]
+	path = source/vim/bundle/rustpeg.vim
+	url = https://github.com/treycordova/rustpeg.vim.git
