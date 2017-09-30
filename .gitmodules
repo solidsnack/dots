@@ -40,3 +40,6 @@
 [submodule "source/vim/bundle/rustpeg.vim"]
 	path = source/vim/bundle/rustpeg.vim
 	url = https://github.com/treycordova/rustpeg.vim.git
+[submodule "source/vim/bundle/swift.vim"]
+	path = source/vim/bundle/swift.vim
+	url = https://github.com/keith/swift.vim
