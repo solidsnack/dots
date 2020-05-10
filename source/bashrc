@@ -118,7 +118,7 @@ export PS2="$(spaces)    "
 ##fi
 export EDITOR=vim
 export TEXEDIT="${EDITOR} +%d %s"
-for d in /sbin /usr/sbin "$HOME/bin" ./bin .
+for d in /sbin /usr/sbin "$HOME/bin" "$HOME/.local/bin"  ./bin .
 do [[ $PATH =~ ^(.*:)$d(:.*)?$ ]] || PATH="$PATH":"$d"
 done
 export PATH
